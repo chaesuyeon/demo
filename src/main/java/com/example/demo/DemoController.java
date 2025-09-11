@@ -11,4 +11,10 @@ public class DemoController {
         model.addAttribute("data", "반갑습니다."); // model 설정
         return "hello"; // hello.html 연결
     }
+
+    @GetMapping("/")   // 루트 경로 처리
+public String index() {
+    return "index";  // Index.html을 렌더링 (대소문자 주의!)
+}
+
 }
