@@ -11,4 +11,12 @@ public class DemoController {
     public String home() {
         return "index";         // templates/index.html
     }
+
+@GetMapping("/about_detailed")
+public String aboutDetailed() {
+    return "about_detailed";  // templates 폴더 안의 about_detailed.html 열기
+}
+
+
+
 }
