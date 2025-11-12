@@ -10,9 +10,20 @@
 <div class="container">
     <h1 class="mt-5">New 블로그 게시판</h1>
 
-    <!-- 게시글 리스트 -->
-    <div class="mt-5">
-        <h2>게시글 목록</h2>
+   <!-- 게시글 검색창 -->
+        <form th:action="@{/board_list}" method="get" class="mt-4">
+            <div class="input-group">
+            <input type="text" name="keyword" th:value="${keyword}" class="form-control" placeholder="검색어 입력...">
+            <button type="submit" class="btn btn-primary">검색</button>
+        </div>
+        </form>
+
+        <!-- 게시글 리스트 -->
+            <div class="mt-5">
+                <h2>게시글 목록</h2>
+
+     
+
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -22,7 +33,7 @@
                     <th>작성일</th>
                     <th>조회수</th>
                     <th>좋아요</th>
-                    <th>관리</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -33,20 +44,26 @@
                             <span th:text="${board.title}"></span>
                         </a>
                     </td>
-
                     <td th:text="${board.user}"></td>
                     <td th:text="${board.newdate}"></td>
                     <td th:text="${board.count}"></td>
                     <td th:text="${board.likec}"></td>
-                    <td>
-                        <!-- 수정/삭제 버튼 -->
-                        <a class="btn btn-warning" th:href="@{/board_edit/{id}(id=${board.id})}">수정</a>
-                        <form th:action="@{/api/board_delete/{id}(id=${board.id})}" method="post" style="display:inline;">
-                            <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-danger">삭제</button>
+                    
                         </form>
                     </td>
                 </tr>
+
+            <!-- 글쓰기 버튼 -->
+                    <table class="table table-bordered mb-4">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a class="btn btn-warning" th:href="@{/board_write}">글쓰기</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
             </tbody>
         </table>
     </div>
