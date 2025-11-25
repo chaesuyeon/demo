@@ -1,13 +1,20 @@
 package com.example.demo.model.domain;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Builder;
+
+@Entity
+@Table(name = "member")
 
 public class Member {
 
+
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 1씩 증가
     @Column(name = "id", updatable = false) // 수정 x

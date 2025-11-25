@@ -29,12 +29,12 @@ public class BlogController {
     // }
 
 
-    @GetMapping("/board_list") // 새로운 게시판 링크 지정
-    public String board_list(Model model) {
-        List<Board> list = blogService.findAll(); // 게시판 전체 리스트, 기존 Article에서 Board로 변경됨
-        model.addAttribute("boards", list); // 모델에 추가
-        return "board_list"; // .HTML 연결
-    }
+    // @GetMapping("/board_list") // 새로운 게시판 링크 지정
+    // public String board_list(Model model) {
+    //     List<Board> list = blogService.findAll(); // 게시판 전체 리스트, 기존 Article에서 Board로 변경됨
+    //     model.addAttribute("boards", list); // 모델에 추가
+    //     return "board_list"; // .HTML 연결
+    // }
 
     @GetMapping("/board_list") // 새로운 게시판 링크 지정
     public String board_list(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String keyword) {
