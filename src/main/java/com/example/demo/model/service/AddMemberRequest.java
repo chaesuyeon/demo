@@ -1,7 +1,9 @@
 package com.example.demo.model.service;
 
 import com.example.demo.model.domain.Member;
+import lombok.Data;
 
+@Data
 public class AddMemberRequest {
 
     private String name;
@@ -11,7 +13,7 @@ public class AddMemberRequest {
     private String mobile;
     private String address;
 
-    public Member toEntity() { // Member 생성자를 통해 객체 생성
+    public Member toEntity() { 
         return Member.builder()
                 .name(name)
                 .email(email)
@@ -20,20 +22,5 @@ public class AddMemberRequest {
                 .mobile(mobile)
                 .address(address)
                 .build();
-    }
-
-    public CharSequence getPassword() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPassword'");
-    }
-
-    public void setPassword(String encodedPassword) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPassword'");
-    }
-
-    public String getEmail() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEmail'");
     }
 }

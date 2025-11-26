@@ -6,15 +6,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter // setter는 없음(무분별한 변경 x)
 @Entity
 @Table(name = "member")
-
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 외부 생성자 접근 방지
 public class Member {
-
-
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 1씩 증가
     @Column(name = "id", updatable = false) // 수정 x

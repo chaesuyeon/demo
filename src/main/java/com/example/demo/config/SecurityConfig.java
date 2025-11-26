@@ -8,21 +8,38 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration // 스프링 설정 클래스 지정, 등록된 Bean 생성 시점
-@EnableWebSecurity // 스프링 보안 활성화
-public class SecurityConfig { 
-    
-    @Bean // 명시적 의존성 주입 : Autowired와 다름
-    // 5.7버전 이전은 WebSecurityConfigurerAdapter 사용
+import static org.springframework.security.config.Customizer.withDefaults;
+
+@Configuration  // 스프링 설정 클래스 지정
+@EnableWebSecurity  // 스프링 보안 활성화
+public class SecurityConfig {
+
+    @Bean  // 보안 필터 체인 설정
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // 설정을 비워둠
-        return http.build(); // 필터 체인을 통해 보안설정(HttpSecurity)을 반환
+        http
+            // 보안 헤더 설정
+            .headers(headers -> 
+                headers.addHeaderWriter((request, response) -> {
+                    response.setHeader("X-XSS-Protection", "1; mode=block");  // XSS 보호
+                })
+            )
+
+            // CSRF 기본 설정
+            .csrf(withDefaults())
+
+            // 세션 관리 설정
+            .sessionManagement(session -> 
+                session
+                    .invalidSessionUrl("/session-expired")  // 세션 만료 시 이동 URL
+                    .maximumSessions(1)                     // 동시에 1개 세션만 허용
+                    .maxSessionsPreventsLogin(true)         // 기존 세션 있을 경우 새 로그인 차단
+            );
+
+        return http.build();
     }
 
-    @Bean // 암호화 설정
+    @Bean  // 비밀번호 암호화
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // 비밀번호 암호화 저장
+        return new BCryptPasswordEncoder();
     }
 }
-
-// 스프링에서 보안 관리 클래스
