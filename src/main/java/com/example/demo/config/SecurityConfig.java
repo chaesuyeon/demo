@@ -25,7 +25,8 @@ public class SecurityConfig {
             )
 
             // CSRF 기본 설정
-            .csrf(withDefaults())
+            //.csrf(withDefaults())
+            .csrf(csrf -> csrf.disable()) // CSRF 비활성화 (필요에 따라 설정)
 
             // 세션 관리 설정
             .sessionManagement(session -> 
