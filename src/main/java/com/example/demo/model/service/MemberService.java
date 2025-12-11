@@ -2,14 +2,17 @@ package com.example.demo.model.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.demo.model.domain.Member;
 import com.example.demo.model.repository.MemberRepository;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Validated   // PPT에서 반드시 추가하라고 한 부분!!!
 @Transactional
 @RequiredArgsConstructor
 public class MemberService {
@@ -25,10 +28,11 @@ public class MemberService {
         }
     }
 
-    // 회원 저장
-    public Member saveMember(AddMemberRequest request) {
+    // 회원 저장 (검증 활성화됨)
+    public Member saveMember(@Valid AddMemberRequest request) {  
         validateDuplicateMember(request);
 
+        // 비밀번호 암호화
         String encodedPassword = passwordEncoder.encode(request.getPassword());
         request.setPassword(encodedPassword);
 
@@ -43,7 +47,6 @@ public class MemberService {
             throw new IllegalArgumentException("존재하지 않는 이메일입니다.");
         }
 
-        // 패스워드 비교
         if (!passwordEncoder.matches(password, member.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 올바르지 않습니다.");
         }
