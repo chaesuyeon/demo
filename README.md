@@ -1,7 +1,10 @@
-[HTML](https://github.com/chaesuyeon/demo/tree/main/src/main/resources/templates)
-[Controller](https://github.com/chaesuyeon/demo/tree/main/src/main/java/com/example/demo/controller)
-[Service](https://github.com/chaesuyeon/demo/tree/main/src/main/java/com/example/demo/model/service)
-[Repository](https://github.com/chaesuyeon/demo/tree/main/src/main/java/com/example/demo/model/repository)
+⩥[HTML](https://github.com/chaesuyeon/demo/tree/main/src/main/resources/templates)
+
+⩥[Controller](https://github.com/chaesuyeon/demo/tree/main/src/main/java/com/example/demo/controller)
+
+⩥[Service](https://github.com/chaesuyeon/demo/tree/main/src/main/java/com/example/demo/model/service)
+
+⩥[Repository](https://github.com/chaesuyeon/demo/tree/main/src/main/java/com/example/demo/model/repository)
 
 
 ♪ 1주차 - 오리엔테이션
