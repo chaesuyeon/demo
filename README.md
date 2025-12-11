@@ -7,6 +7,7 @@
 ⩥[Repository](https://github.com/chaesuyeon/demo/tree/main/src/main/java/com/example/demo/model/repository)
 
 
+
 ♪ 1주차 - 오리엔테이션
 
 ♪ 2주차 - Visual Studio Code 확장 프로그램 설치 및 Spring 부트 동작
